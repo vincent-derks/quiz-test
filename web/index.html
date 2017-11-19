@@ -11,13 +11,14 @@
     <body>
         <div class="container center">
             <object id="hp-glasses" class="hp-glasses center" data="/img/hp-glasses.svg" type="image/svg+xml"></object>
-            <h1>The Hogwarts sorting quiz</h1>
+            <h1>The Hogwarts Sorting Hat</h1>
             <object id="sorting" class="sorting-hat" data="/img/sorting-hat.svg" type="image/svg+xml"></object>
             <form id="quiz-form">
                 <ul class="question-slider" id="question-slider">
-                    <li class="active">
+                    <li class="active intro">
                         <h2>Hi there, I am the Sorting Hat</h2>
                         <p>I'm going to ask you <span id="question-count"></span> questions, to find out which Hogwarts house you belong to. Click the start button when you are ready to answer my questions.</p>
+                        <div class="error"></div>
                         <button class="next-question" id="start-quiz">Start</button>
                     </li>
                 </ul>
