@@ -1,0 +1,31 @@
+{
+  "name": "quiz-test",
+  "version": "1.0.0",
+  "description": "Quiz test for Social Sweethearts",
+  "main": "index.js",
+  "scripts": {
+    "start": "./node_modules/.bin/webpack && node src/server/index.js",
+    "build": "./node_modules/.bin/webpack -p && node src/server/index.js -p",
+    "server": "node src/server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vincent-derks/quiz-test.git"
+  },
+  "keywords": [
+    "quiz"
+  ],
+  "author": "Vincent Derks",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vincent-derks/quiz-test/issues"
+  },
+  "homepage": "https://github.com/vincent-derks/quiz-test#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "express": "^4.16.2",
+    "webpack": "^3.8.1"
+  }
+}
