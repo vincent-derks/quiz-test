@@ -51,7 +51,10 @@ form {
     border-radius: 2rem;
     margin-left: 2rem;
     position: relative;
+    transition: all 0.2s ease-in-out;
+    transform-origin: top left;
 }
+
 .question-slider:before {
     content: '';
     z-index: 0;
@@ -68,21 +71,20 @@ form {
     transform: rotate(-45deg);
 }
 
+.question-slider.faded-out {
+    opacity: 0;
+    transform: scale(0.5);
+}
+
 .question-slider li {
     padding: 2rem;
     font-size: 2rem;
-    display: block;
-    opacity: 0;
-    visibility: hidden;
+    display: none;
     overflow: hidden;
-    position: absolute;
-    transition: all 0.2s ease-in-out;
 }
 
 .question-slider li.active {
-    opacity: 1; 
-    position: relative;
-    visibility: visible;
+    display: block;
 }
 
 .question-slider li label {
@@ -180,6 +182,12 @@ input[type="range"] {
     text-align: right;
 }
 
+.error {
+    color: red;
+    font-style: italic;
+    margin: 2rem 0;
+}
+
 /**** Fonts ****/
 
 html {
@@ -217,3 +225,4 @@ h2 {
     font-weight: normal;
     font-style: normal;
 }
+
