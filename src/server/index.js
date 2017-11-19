@@ -1,5 +1,4 @@
 let express = require('express')
-let html = require('./html')
 let bodyParser = require('body-parser')
 let handleQuizAnswers = require('./api/handleQuizAnswers')
 
