@@ -25,28 +25,51 @@ class QuizTest {
     questionsSetup(){
         // Fill out number of questions in intro text
         const questionCountEl = document.getElementById('question-count')
-        if(questionCountEl) questionCountEl.innerHTML = this.totalQuestions
+        if (questionCountEl) questionCountEl.innerHTML = this.totalQuestions
 
         // Set up the question list
         let questionListHtml = ''
-        for(let question of questions){
-            const answerlist = ''
-            for(let answer of question.answers){
-                answerlist += `<label><input type="radio" id="${answer.id}">${answer.title}</label><br>`
+        for (let question of questions) {
+            if (question.type == 'radio'){
+                questionListHtml += this.renderRadioQuestions(question)
+            } else if (question.type == 'slider') {
+                questionListHtml += this.renderSliderQuestions(question)
             }
-            questionListHtml = questionListHtml + `
-                <li >
-                    <h2>${question.title}</h2>
-                    ${answerlist}
-                    <button class="next-question">Next</button>
-                </li>
-            `
         }
         this.questionSlider.innerHTML += questionListHtml
     }
 
+    renderRadioQuestions(question){
+        let answerlist = ''
+        for (let answer of question.answers) {
+            answerlist += `<input type="radio" id="${answer.id}" name="${question.id}"><label for="${answer.id}">${answer.title}</label><br>`
+        }
+        return `
+            <li>
+                <h2>${question.title}</h2>
+                ${answerlist}
+                <button class="next-question">Next</button>
+            </li>
+        `
+    }
+
+    renderSliderQuestions(question){
+        let labels = ''
+        for (let answer of question.answers) {
+            labels += `<span>${answer.title}</span>`
+        }
+        return `
+            <li>
+                <h2>${question.title}</h2>
+                <input type="range" min="1" max="100" id="${question.id}">
+                <div class="slider-labels">${labels}</div>
+                <button class="next-question">Next</button>
+            </li>
+        `
+    }
+
     answerQuestion(){
-        if( this.currentSlide > this.totalQuestions ) return false 
+        if ( this.currentSlide >= this.totalQuestions ) return false 
         this.currentSlide++
         this.setCurrentSlide()
     }
