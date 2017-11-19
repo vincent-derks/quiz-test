@@ -1,28 +1,88 @@
+import { questions } from './../data/questions'
+
 class QuizTest {
 
     constructor(){
-        this.button = document.getElementById('post-answers')
+
+        // Set up global properties
+        this.form = document.getElementById('quiz-form')
+        this.questionSlider = document.getElementById('question-slider')
+        this.totalQuestions = questions.length
+        this.currentSlide = 1
+        
+        // Set up the quiz questions
+        this.questionsSetup()
+        this.nextButtons = document.getElementsByClassName('next-question')
+
+        // Kick off events
         this.events()
+
+        // Bindings
+        this.handleFormSubmit = this.handleFormSubmit.bind(this)
+        this.answerQuestion = this.answerQuestion.bind(this)
+    }
+
+    questionsSetup(){
+        // Fill out number of questions in intro text
+        const questionCountEl = document.getElementById('question-count')
+        if(questionCountEl) questionCountEl.innerHTML = this.totalQuestions
+
+        // Set up the question list
+        let questionListHtml = ''
+        for(let question of questions){
+            const answerlist = ''
+            for(let answer of question.answers){
+                answerlist += `<label><input type="radio" id="${answer.id}">${answer.title}</label><br>`
+            }
+            questionListHtml = questionListHtml + `
+                <li >
+                    <h2>${question.title}</h2>
+                    ${answerlist}
+                    <button class="next-question">Next</button>
+                </li>
+            `
+        }
+        this.questionSlider.innerHTML += questionListHtml
+    }
+
+    answerQuestion(){
+        if( this.currentSlide > this.totalQuestions ) return false 
+        this.currentSlide++
+        this.setCurrentSlide()
+    }
+
+    setCurrentSlide(){
+        const listItems = this.questionSlider.getElementsByTagName('li')
+        Array.from(listItems).forEach( (item, index) => {
+            item.classList.remove('active')
+            if ( ( index + 1 ) == this.currentSlide ) item.classList.add('active')
+        })
     }
 
     events(){
-        this.button.addEventListener('click', e => {
-            const data = {
-                test: 'test'
+        if (this.form) this.form.addEventListener('submit', e => this.handleFormSubmit(e))
+        if (this.nextButtons) Array.from(this.nextButtons).forEach(button => button.addEventListener('click', e => {
+            e.preventDefault()
+            this.answerQuestion()
+        }))
+    }
+
+    handleFormSubmit(e){
+        e.preventDefault()
+        const data = {
+            test: 'test'
+        }
+        fetch('/api/answers', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
             }
-            fetch('/api/answers', {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(res => res.json())
-            .then(res => console.log(res))
         })
+        .then(res => res.json())
+        .then(res => console.log(res))
     }
 
 }
 
-new QuizTest()
+new QuizTest
