@@ -1,22 +1,5 @@
 const questionsWithAnswers = [
     {
-        id: 'question_6',
-        title: 'The goal in life is to be successful and have a great carreer.',
-        type: 'slider',
-        answers: [
-            {
-                title: 'Agree',
-                id: 'answer_6_1'
-            },{
-                title: 'Neutral',
-                id: 'answer_6_2'
-            },{
-                title: 'Disagree',
-                id: 'answer_6_3'
-            }
-        ],
-        slider_ranges: ['slitherin','ravenclaw','gryffindor','hufflepuff']
-    },{
         id: 'question_1',
         title: 'If you could only do one thing, for the rest of your life, you would:',
         type: 'radio',
@@ -221,6 +204,23 @@ const questionsWithAnswers = [
                 }
             }
         ]
+    },{
+        id: 'question_6',
+        title: 'The goal in life is to be successful and have a great carreer.',
+        type: 'slider',
+        answers: [
+            {
+                title: 'Agree',
+                id: 'answer_6_1'
+            },{
+                title: 'Neutral',
+                id: 'answer_6_2'
+            },{
+                title: 'Disagree',
+                id: 'answer_6_3'
+            }
+        ],
+        slider_ranges: ['slitherin','ravenclaw','gryffindor','hufflepuff']
     },{
         id: 'question_7',
         title: 'Whats more important',
