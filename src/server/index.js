@@ -1,6 +1,6 @@
 let express = require('express')
 let bodyParser = require('body-parser')
-let handleQuizAnswers = require('./api/handleQuizAnswers')
+import handleQuizAnswers from './api/handleQuizAnswers'
 
 const App = express()
 
