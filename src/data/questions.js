@@ -7,39 +7,19 @@ const questionsWithAnswers = [
             {
                 title: 'Travel the world and go on adventures',
                 id: 'answer_1_1',
-                values: {
-                    gryffindor: 1,
-                    hufflepuff: 0,
-                    slitherin: 0,
-                    ravenclaw: 0
-                }
+                points: ['gryffindor']
             },{
                 title: 'Start your own company',
                 id: 'answer_1_2',
-                values: {
-                    gryffindor: 0,
-                    hufflepuff: 0,
-                    slitherin: 1,
-                    ravenclaw: 0
-                }
+                points: ['slytherin']
             },{
                 title: 'Get maried and have lots of children',
                 id: 'answer_1_3',
-                values: {
-                    gryffindor: 0,
-                    hufflepuff: 1,
-                    slitherin: 0,
-                    ravenclaw: 0
-                }
+                points: ['hufflepuff']
             },{
                 title: 'Spend your life studying, you can never learn too much',
                 id: 'answer_1_4',
-                values: {
-                    gryffindor: 0,
-                    hufflepuff: 0,
-                    slitherin: 0,
-                    ravenclaw: 1
-                }
+                points: ['ravenclaw']
             }
         ]
     },{
@@ -50,42 +30,23 @@ const questionsWithAnswers = [
             {
                 title: 'Mount Everest base camp',
                 id: 'answer_2_1',
-                values: {
-                    gryffindor: 1,
-                    hufflepuff: 0,
-                    slitherin: 0,
-                    ravenclaw: 0
-                }
+                points: ['gryffindor']
             },{
                 title: 'An ancient city to explore',
                 id: 'answer_2_2',
-                values: {
-                    gryffindor: 0,
-                    hufflepuff: 0,
-                    slitherin: 0,
-                    ravenclaw: 1
-                }
+                points: ['ravenclaw']
             },{
                 title: 'A cozy cabin in the woods',
                 id: 'answer_2_3',
-                values: {
-                    gryffindor: 0,
-                    hufflepuff: 1,
-                    slitherin: 0,
-                    ravenclaw: 0
-                }
+                points: ['hufflepuff']
             },{
                 title: 'A luxury retreat',
                 id: 'answer_2_4',
-                values: {
-                    gryffindor: 0,
-                    hufflepuff: 0,
-                    slitherin: 1,
-                    ravenclaw: 0
-                }
+                points: ['slytherin']
             }
         ]
-    },{
+    }
+    ,{
         id: 'question_3',
         title: 'You would be most hurt if a person called you:',
         type: 'radio',
@@ -93,115 +54,61 @@ const questionsWithAnswers = [
             {
                 title: 'Unkind',
                 id: 'answer_3_1',
-                values: {
-                    gryffindor: 0,
-                    hufflepuff: 1,
-                    slitherin: 0,
-                    ravenclaw: 0
-                }
+                points: ['hufflepuff']
             },{
                 title: 'Boring',
                 id: 'answer_3_2',
-                values: {
-                    gryffindor: 1,
-                    hufflepuff: 0,
-                    slitherin: 0,
-                    ravenclaw: 1
-                }
+                points: ['gryffindor','ravenclaw']
             },{
                 title: 'Ignorant',
                 id: 'answer_3_3',
-                values: {
-                    gryffindor: 0,
-                    hufflepuff: 0,
-                    slitherin: 0,
-                    ravenclaw: 1
-                }
+                points: ['ravenclaw']
             },{
                 title: 'Weak',
                 id: 'answer_3_4',
-                values: {
-                    gryffindor: 0,
-                    hufflepuff: 0,
-                    slitherin: 1,
-                    ravenclaw: 0
-                }
+                points: ['slytherin']
             }
         ]
     },{
         id: 'question_4',
         title: 'It\'s saturday, you finished your homework and you have some free time. You decide to spend some time away from your common room. Where do you go?',
+        type: 'radio',
         answers: [
             {
                 title: 'Forbidden forest',
                 id: 'answer_4_1',
-                values: {
-                    gryffindor: 1,
-                    hufflepuff: 0,
-                    slitherin: 0,
-                    ravenclaw: 0
-                }
+                points: ['gryffindor']
             },{
                 title: 'The library',
                 id: 'answer_4_2',
-                values: {
-                    gryffindor: 0,
-                    hufflepuff: 0,
-                    slitherin: 0,
-                    ravenclaw: 1
-                }
+                points: ['ravenclaw']
             },{
                 title: 'The room of requirement',
                 id: 'answer_4_3',
-                values: {
-                    gryffindor: 0,
-                    hufflepuff: 0,
-                    slitherin: 1,
-                    ravenclaw: 0
-                }
+                points: ['slytherin']
             },{
                 title: 'The kitchens',
                 id: 'answer_4_4',
-                values: {
-                    gryffindor: 0,
-                    hufflepuff: 1,
-                    slitherin: 0,
-                    ravenclaw: 0
-                }
+                points: ['hufflepuff']
             }
         ]
     },{
         id: 'question_5',
-        title: 'Which deathly hallow would you choose?',
+        title: 'Which Deathly Hallow would you choose?',
         type: 'radio',
         answers: [
             {
-                title: 'Elderwand',
+                title: 'Elder wand',
                 id: 'answer_5_1',
-                values: {
-                    gryffindor: 1,
-                    hufflepuff: 0,
-                    slitherin: 1,
-                    ravenclaw: 0
-                }
+                points: ['slytherin']
             },{
                 title: 'Invisibility cloak',
                 id: 'answer_5_2',
-                values: {
-                    gryffindor: 1,
-                    hufflepuff: 0,
-                    slitherin: 0,
-                    ravenclaw: 1
-                }
+                points: ['gryffindor','ravenclaw']
             },{
                 title: 'Resurrection stone',
                 id: 'answer_5_3',
-                values: {
-                    gryffindor: 0,
-                    hufflepuff: 1,
-                    slitherin: 0,
-                    ravenclaw: 0
-                }
+                points: ['hufflepuff']
             }
         ]
     },{
@@ -220,7 +127,7 @@ const questionsWithAnswers = [
                 id: 'answer_6_3'
             }
         ],
-        slider_ranges: ['slitherin','ravenclaw','gryffindor','hufflepuff']
+        slider_ranges: ['slytherin','ravenclaw','gryffindor','hufflepuff']
     },{
         id: 'question_7',
         title: 'Whats more important',
@@ -234,7 +141,7 @@ const questionsWithAnswers = [
                 id: 'answer_7_2'
             }
         ],
-        slider_ranges: ['hufflepuff','ravenclaw','gryffindor','slitherin']
+        slider_ranges: ['hufflepuff','ravenclaw','gryffindor','slytherin']
     },{
         id: 'question_8',
         title: 'Pick a pet',
@@ -243,47 +150,29 @@ const questionsWithAnswers = [
             {
                 title: 'Toad',
                 id: 'answer_8_1',
-                values: {
-                    gryffindor: 0,
-                    hufflepuff: 1,
-                    slitherin: 0,
-                    ravenclaw: 0
-                }
+                points: ['hufflepuff']
             },{
                 title: 'Rat',
                 id: 'answer_8_2',
-                values: {
-                    gryffindor: 0,
-                    hufflepuff: 0,
-                    slitherin: 0,
-                    ravenclaw: 1
-                }
+                points: ['ravenclaw']
             },{
                 title: 'Cat',
                 id: 'answer_8_3',
-                values: {
-                    gryffindor: 0,
-                    hufflepuff: 0,
-                    slitherin: 1,
-                    ravenclaw: 0
-                }
+                points: ['slytherin']
             },{
                 title: 'Owl',
                 id: 'answer_8_4',
-                values: {
-                    gryffindor: 1,
-                    hufflepuff: 0,
-                    slitherin: 0,
-                    ravenclaw: 0
-                }
+                points: ['gryffindor']
             }
         ]
     }
 ]
 
+// We want to export the questions without exposing the point-system to the frontend
 export const questions = questionsWithAnswers.map(question => {
     return {
         ...question,
+        slider_ranges: null,
         answers: question.answers.map(answer => { 
             return {
                 title: answer.title, 
@@ -293,5 +182,6 @@ export const questions = questionsWithAnswers.map(question => {
     }
 })
 
+// Export everything for the backend
 export default questionsWithAnswers
 
