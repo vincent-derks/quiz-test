@@ -13,6 +13,7 @@ module.exports = {
                 query: {
                     babelrc: false,
                     presets: ['env'],
+                    plugins: ['transform-object-rest-spread']
                 }
             }
         ],
