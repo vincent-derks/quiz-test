@@ -10,8 +10,10 @@
     </head>
     <body>
         <div class="container center">
-            <object id="hp-glasses" class="hp-glasses center" data="/img/hp-glasses.svg" type="image/svg+xml"></object>
-            <h1>The Hogwarts Sorting Hat</h1>
+            <header>
+                <object id="hp-glasses" class="hp-glasses center no-center-mobile" data="/img/hp-glasses.svg" type="image/svg+xml"></object>
+                <h1>The Hogwarts Sorting Hat</h1>
+            </header>
             <object id="sorting" class="sorting-hat" data="/img/sorting-hat.svg" type="image/svg+xml"></object>
             <form id="quiz-form">
                 <ul class="question-slider" id="question-slider">
@@ -23,6 +25,7 @@
                     </li>
                 </ul>
             </form>
+            <button id="restart-test">Test again</button>
         </div>
         <script src="/js/bundle.js"></script>
     </body>     

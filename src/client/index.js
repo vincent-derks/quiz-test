@@ -10,6 +10,7 @@ class QuizTest {
         this.totalQuestions = questions.length
         this.currentSlide = 1
         this.sortingHat = document.getElementById('sorting')
+        this.restartButton = document.getElementById('restart-test')
         // Time mouth talks (in milliseconds). Don't forget to also change this value in the CSS in the SVG element
         this.talkingLength = 1000
 
@@ -30,11 +31,18 @@ class QuizTest {
     }
 
     events(){
-        if (this.form) this.form.addEventListener('submit', e => this.handleFormSubmit(e))
+        // Set up some general events
+        // Submit the answers
+        document.querySelector('.finish-quiz').addEventListener('click', e => this.handleFormSubmit(e))
+
+        // Go to the next slide
         if (this.nextButtons) Array.from(this.nextButtons).forEach(button => button.addEventListener('click', e => {
             e.preventDefault()
             this.answerQuestion()
         }))
+
+        // Restart the quiz
+        this.restartButton.addEventListener('click', e => window.location.reload() )
     }
 
     questionsSetup(){
@@ -54,6 +62,15 @@ class QuizTest {
             }
         })
 
+        // Add the thinking page & results page
+        questionListHtml += `
+            <li class="thinking">
+                <p>Hmmm... Let me think. You're a difficult one. But I think I know...</p>
+                <div class="error"></div>
+            </li>
+            <li><h2><span id="answer"></span>!!!</h2><div class="error"></div></li>
+        `
+
         // Add the questions to the DOM
         this.questionSlider.innerHTML += questionListHtml
 
@@ -64,9 +81,9 @@ class QuizTest {
     renderRadioQuestions(question, last){
         // First build the list of answers
         let answerlist = ''
-        for (let answer of question.answers) {
-            answerlist += `<input type="radio" id="${answer.id}" name="${question.id}"><label for="${answer.id}">${answer.title}</label><br>`
-        }
+        question.answers.forEach((answer, index) => {
+            answerlist += `<input type="radio" value="${index}" id="${answer.id}" name="${question.id}"><label for="${answer.id}">${answer.title}</label><br>`
+        })
         // Return the HTML for the question
         return `
             <li>
@@ -88,7 +105,7 @@ class QuizTest {
         return `
             <li>
                 <h2>${question.title}</h2>
-                <input type="range" min="1" max="100" id="${question.id}">
+                <input name="${question.id}" type="range" min="1" max="100" id="${question.id}">
                 <div class="slider-labels">${labels}</div>
                 <div class="error"></div>
                 ${last ? '<button class="finish-quiz">Show me my house</button>' : '<button class="next-question">Next</button>'}
@@ -97,12 +114,12 @@ class QuizTest {
     }
 
     answerQuestion(){
-        // If it's the last question, don't go further
-        if ( this.currentSlide >= this.totalQuestions ) return false 
+        // Do some simple validation & error handling
         if ( !this.checkForAnswerGiven() ) {
             this.showError('Please select an answer, otherwise I can\'t make a wise decision')
             return false
         }
+        // First empty all the errors
         this.showError('')
         // First fade out everything, for a smooth transition
         this.fadeOutQuestionSlider(() => {
@@ -113,9 +130,18 @@ class QuizTest {
     }
 
     checkForAnswerGiven(){
+        // Check if the user answered the question
+        // Find the active element
         const activeItem = this.questionSlider.querySelector('.active')
+
+        // If it's the intro, or the "thinking" slide, we don't need to check for an answer
         if (activeItem.classList.contains('intro')) return true
+        if (activeItem.classList.contains('thinking')) return true
+
+        // Find all the inputs in the active item
         const inputs = Array.from(activeItem.querySelectorAll('input'))
+
+        // Check if one of them has an answer
         let answer = false
         for(const input of inputs){
             if (input.type == 'range') answer = true
@@ -149,6 +175,7 @@ class QuizTest {
     }
 
     showError(message){
+        if (message) this.animateMouth()
         const activeItem = this.questionSlider.querySelector('.active')
         const errorDiv = activeItem.querySelector('.error')
         errorDiv.innerHTML = message
@@ -156,18 +183,34 @@ class QuizTest {
 
     handleFormSubmit(e){
         e.preventDefault()
-        const data = {
-            test: 'test'
+        // First go to the next slide ("thinking" slide)
+        this.answerQuestion()
+        // Collect the form-data and fill an object-literal with the form-data
+        const formData = new FormData(this.form)
+        let data = {}
+        for (var entry of formData.entries()) {
+            data[entry[0]] = entry[1]
         }
+        data = JSON.stringify(data)
+        // Using Fetch API to do a POST to the backend
         fetch('/api/answers', {
             method: 'POST',
-            body: JSON.stringify(data),
+            body: data,
             headers: {
                 'Content-Type': 'application/json'
             }
         })
         .then(res => res.json())
-        .then(res => console.log(res))
+        .then(res => {
+            // Fill in the answer 
+            const answerSpan = document.getElementById('answer')
+            answerSpan.innerHTML = res.toUpperCase()
+            // Show the answer after 3000ms
+            setTimeout(() => {
+                this.answerQuestion()
+                this.restartButton.classList.add('visible')
+            }, 3000)
+        })
     }
 
 }
