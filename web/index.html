@@ -9,7 +9,19 @@
         <link href="/css/style.css" rel="stylesheet" />
     </head>
     <body>
-        <button id="post-answers">POST answers</button>
+        <div class="container center">
+            <object id="hp-glasses" class="hp-glasses center" data="/img/hp-glasses.svg" type="image/svg+xml"></object>
+            <h1>The great Hogwarts sorting quiz</h1>
+            <object id="sorting" class="sorting-hat" data="/img/sorting-hat.svg" type="image/svg+xml"></object>
+            <form id="quiz-form">
+                <ul class="question-slider" id="question-slider">
+                    <li class="active">
+                        <p>Hi there, I'm going to ask you <span id="question-count"></span> questions, to find out which Hogwarts house you belong to. Click the start button when you are ready to answer my questions.</p>
+                        <button class="next-question" id="start-quiz">Start</button>
+                    </li>
+                </ul>
+            </form>
+        </div>
         <script src="/js/bundle.js"></script>
     </body>     
 </html>
