@@ -45,8 +45,7 @@ const questionsWithAnswers = [
                 points: ['slytherin']
             }
         ]
-    }
-    ,{
+    },{
         id: 'question_3',
         title: 'You would be most hurt if a person called you:',
         type: 'radio',
