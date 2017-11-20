@@ -36,8 +36,8 @@ var clientConfig = {
                 loader: 'babel-loader',
                 query: {
                     babelrc: false,
-                    presets: ['env'],
-                    plugins: ['transform-object-rest-spread']
+                    presets: ['env', 'es2017'],
+                    plugins: ['transform-object-rest-spread', 'transform-runtime']
                 }
             }
         ],

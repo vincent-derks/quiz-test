@@ -68,7 +68,7 @@ class QuizTest {
                 <p>Hmmm... Let me think. You're a difficult one. But I think I know...</p>
                 <div class="error"></div>
             </li>
-            <li><h2><span id="answer"></span>!!!</h2><div class="error"></div></li>
+            <li class="result"><h2><span id="answer"></span>!!!</h2><div class="error"></div></li>
         `
 
         // Add the questions to the DOM
@@ -137,6 +137,7 @@ class QuizTest {
         // If it's the intro, or the "thinking" slide, we don't need to check for an answer
         if (activeItem.classList.contains('intro')) return true
         if (activeItem.classList.contains('thinking')) return true
+        if (activeItem.classList.contains('result')) return true
 
         // Find all the inputs in the active item
         const inputs = Array.from(activeItem.querySelectorAll('input'))
