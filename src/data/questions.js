@@ -1,7 +1,7 @@
 const questionsWithAnswers = [
     {
         id: 'question_1',
-        title: 'If you could only do one thing, for the rest of your life, you would:',
+        title: 'If you could only do one thing for the rest of your life, you would:',
         type: 'radio',
         answers: [
             {
