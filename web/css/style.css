@@ -70,14 +70,22 @@ form {
 }
 
 @media(max-width: 600px){
+    header {
+        float: right;
+        width: calc(100% - 100px);
+        margin-top: 4rem;
+    }    
     .hp-glasses {
         width: 40px;
+        position: fixed;
+        top: 1rem;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0.3;
     }
     .sorting-hat {
-        float: none;
         position: relative;
-        left: calc(50% - 50px);
-        transform: translateX(-50%);
+        top: 4rem;
     }
     form {
         width: 100%;
@@ -341,6 +349,7 @@ h2 {
     h1 {
         text-align: center;
         font-size: 2.5rem;
+        margin-bottom: 0.6rem;
     }
     h2 {
         font-size: 2rem;
